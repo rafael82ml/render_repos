@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie recommendation</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Hello {{name}}</h1>
+    <h4>Welcome to my recommender page</h4>
+    <img src="https://images.unsplash.com/photo-1616530940355-351fabd9524b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bW92aWVzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60" width="400" height="400"/>
+    <br/>
+    <form action="/recommendation">
+    <select name="method">
+        <option value="Random">Random</option>
+        <option value="NMF">NMF</option>
+    </select>
+    <br></br>
+
+    {%for _ in range(3)%}
+    <input type="text" name="title" placeholder="title" list="list_movies" required>
+    <input type="number" name="rating" placeholder="1-5" required max="5" min="1">  
+
+    <br></br>
+    {%endfor%}
+    <input type="submit" value="Show rec">
+    <!-- <button type="submit">Show Recom</button>     -->
+</form>
+
+   
+    <datalist id="list_movies">
+        {%for mov in movies%}
+        <option value="{{mov}}"></option>
+        {%endfor%}
+    </datalist>
+
+
+</body>
+</html>
